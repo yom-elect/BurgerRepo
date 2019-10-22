@@ -5,28 +5,24 @@ import {Route} from 'react-router-dom'
 
 
 export default class CheckOut extends Component {
-    state = {
-        ingredients: {},
-        totalPrice : 0,
-    }
     
-    componentDidMount(){
-        let {location} = this.props
-        const query = new URLSearchParams(location.search)
-        const ingredients = {};
-        let price = 0;
-        for (let param of query.entries()){
-            // ['salad' , 1]
-            if (param[0] === 'price'){
-                price = param[1]
-            }
-            else {
-                ingredients[param[0]] = +param[1]
-            }
+    // componentDidMount(){
+    //     let {location} = this.props
+    //     const query = new URLSearchParams(location.search)
+    //     const ingredients = {};
+    //     let price = 0;
+    //     for (let param of query.entries()){
+    //         // ['salad' , 1]
+    //         if (param[0] === 'price'){
+    //             price = param[1]
+    //         }
+    //         else {
+    //             ingredients[param[0]] = +param[1]
+    //         }
             
-        }
-        this.setState({ingredients, totalPrice: price})
-    }
+    //     }
+    //     this.setState({ingredients, totalPrice: price})
+    // }
     
     checkoutCanceledHandler = ()=>{
         this.props.history.goBack();

@@ -37,40 +37,7 @@ class BurgerBuilder extends Component {
             },0)
           return   sum > 0 
     }
-    // addIngredientHandler = (type)=>{
-    //     const {totalPrice, ingredients} =this.state
-    //     const updatedCount = ingredients[type] + 1
-    //     const updatedIngredients = {
-    //         ...ingredients
-    //     }
-    //     const priceAddition = INGREDIENT_PRICES[type]
-    //     updatedIngredients[type] = updatedCount
-    //     const newPrice = totalPrice + priceAddition
-    //     this.setState({
-    //             totalPrice: newPrice,
-    //             ingredients: updatedIngredients,     
-    //     })
-    //     this.updatePurchaseStatus(updatedIngredients)
-
-    // }
     
-    // removeIngredientHandler = (type)=>{
-    //     const {totalPrice, ingredients} =this.state
-    //     if (ingredients[type] ===0)
-    //         return
-    //     const updatedCount = ingredients[type] - 1
-    //     const updatedIngredients = {
-    //         ...ingredients
-    //     }
-    //     const priceDeduction = INGREDIENT_PRICES[type]
-    //     updatedIngredients[type] = updatedCount
-    //     const newPrice = totalPrice - priceDeduction
-    //     this.setState({
-    //             totalPrice: newPrice,
-    //             ingredients: updatedIngredients,     
-    //     })
-    //     this.updatePurchaseStatus(updatedIngredients)
-    // }
     purchaseHandler =()=>{
         this.setState({purchasing :true}) 
     }
@@ -79,21 +46,7 @@ class BurgerBuilder extends Component {
     }
     purchaseContinueHandler = ()=> {
         let {history} = this.props
-        let {ingredients, totalPrice} = this.state
-        //alert('You continue')
-      
-       
-        const queryParams = [];
-        for (let ele in ingredients){
-            queryParams.push(encodeURIComponent(ele) + '=' + encodeURIComponent(ingredients[ele]))
-        }
-        queryParams.push('price='+totalPrice)
-        //console.log(queryParams)
-        const queryString = queryParams.join('&')
-        history.push({
-            pathname: '/checkout',
-            search: '?' + queryString                
-        })
+        history.push('/checkout')
 
     }
 
