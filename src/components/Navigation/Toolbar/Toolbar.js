@@ -5,7 +5,7 @@ import DrawerToggle from '../DrawerToggle/DrawerToggle'
 import './Toolbar.css'
 
 
-const  toolbar = ({drawerToggleClicked})=> {
+const  toolbar = ({drawerToggleClicked, isAuth})=> {
     return (
         <div>
            <header className="Toolbar ">
@@ -13,7 +13,7 @@ const  toolbar = ({drawerToggleClicked})=> {
                <Logo height="80%"/>
                 <div>
                     <nav className="DesktopOnly">
-                        <Navigation/>
+                        <Navigation isAuthenticated ={isAuth}/>
                     </nav>
                 </div>
             </header> 

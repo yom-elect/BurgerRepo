@@ -1,5 +1,4 @@
 export const ValidatorChecker = (type)=>{
-
     // componentDidMount() {
     //     // custom rule will have name 'isPasswordMatch'
     //     ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
@@ -41,7 +40,7 @@ export const ValidatorChecker = (type)=>{
                     errorMessages:['this field is required']
                     } 
             break;
-        case ('repeatPassword'):
+        case ('repeatPassWord'):
             Validation = {
                     validators:['isPasswordMatch','required'],
                     errorMessages:['password mismatch','this field is required']

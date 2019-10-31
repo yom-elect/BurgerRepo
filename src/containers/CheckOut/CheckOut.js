@@ -29,7 +29,7 @@ import {connect} from 'react-redux'
             purchasedRedirect = purchased ? 
             <Redirect to ="/"/> : null; 
 
-            console.log(purchasedRedirect)
+            //console.log(purchasedRedirect)
         }
         // eslint-disable-next-line no-lone-blocks   
         {ings && (

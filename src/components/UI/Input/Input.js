@@ -8,8 +8,8 @@ const input= ({elementType,elementConfig ,value, changed, validator,id})=> {
     let checker = null
     if (validator(id)){
        // console.log(id)
-         checker= validator(id)
-         //console.log(checker)
+        checker= validator(id)
+         
     }
 
     switch (elementType){

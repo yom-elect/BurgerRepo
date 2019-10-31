@@ -14,11 +14,11 @@ import { purchaseBurger } from '../../../store/actions/orderAction';
  class ContactDetail extends Component {
     state = {
         orderForm:{
-            name: InputTag('Your Name'),
-            street:InputTag('Street'),
-            zipCode: InputTag('Zip Code'),
-            country:InputTag('Country'),
-            email: InputTag('Your E-Mail'),
+            name: InputTag('Your Name','name'),
+            street:InputTag('Street','text'),
+            zipCode: InputTag('Zip Code','text'),
+            country:InputTag('Country','text'),
+            email: InputTag('Your E-Mail', 'text'),
             deliveryMethod: DeliveryTag(),
             }, 
         loading: false,
@@ -26,7 +26,7 @@ import { purchaseBurger } from '../../../store/actions/orderAction';
 
     orderHandler = (event)=> {
         event.preventDefault()
-        let {ings, totalPrice, onOrderBuger} = this.props
+        let {ings, totalPrice, onOrderBuger, token} = this.props
         let {orderForm} = this.state
         //console.log(ingredients)
        
@@ -39,19 +39,18 @@ import { purchaseBurger } from '../../../store/actions/orderAction';
             price : totalPrice,
             orderData : formData,
         }
-        onOrderBuger(order)
+        onOrderBuger(order,token)
          //console.log(order)
     }
 
     inputChangedHandler = (event,inputIdentifier)=>{
         const updatedOrderForm = {
-             ...this.state.orderForm
+             ...this.state.orderForm,
+             [inputIdentifier]:{
+                 ...this.state.orderForm[inputIdentifier],
+                 value:event.target.value
+             }
         };
-        const updatedFormElement = {
-            ...updatedOrderForm
-        };
-        updatedFormElement.value = event.target.value
-        updatedOrderForm[inputIdentifier] = updatedFormElement;
         this.setState({orderForm:updatedOrderForm})
     }
   
@@ -94,13 +93,14 @@ const mapStateToProps = (state)=>{
     return {
         ings: state.burgerBuilder.ingredients,
         totalPrice:state.burgerBuilder.totalPrice,
-        loading: state.orders.loading 
+        loading: state.orders.loading ,
+        token: state.auth.token,
     }
 }
 
 const mapDispatchToProps = (dispatch)=>{
     return {
-        onOrderBuger : (orderData) => dispatch(purchaseBurger(orderData))
+        onOrderBuger : (orderData,token) => dispatch(purchaseBurger(orderData, token))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactDetail, axios) );

@@ -19,7 +19,7 @@ const orderSummary = ({ingredients, purchaseEnd,purchaseGood, price})=> {
             <p><strong> Total Price: ₦ {price.toFixed(2)}</strong></p>
             <p>Continue to chekout?</p>
             <Button clicked= {purchaseEnd} btnType = "Danger" >CANCEL</Button>
-            <Button clicked={purchaseGood} btnType = "Success">COUNTINUE</Button>
+            <Button clicked={purchaseGood} btnType = "Success">CONTINUE</Button>
             
         </div>
     )

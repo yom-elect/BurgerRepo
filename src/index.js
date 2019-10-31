@@ -10,13 +10,14 @@ import {BrowserRouter} from 'react-router-dom';
 import {createStore,applyMiddleware, compose,combineReducers} from 'redux';
 import  bugerReducer from './store/reducers/burgerReducer'
 import  orderReducer from './store/reducers/orderReducer'
-
+import authReducer from './store/reducers/authReducer'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
             burgerBuilder: bugerReducer,
             orders: orderReducer,
+            auth: authReducer,
 })
 
 const store = createStore(rootReducer,composeEnhancers(

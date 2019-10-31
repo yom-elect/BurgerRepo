@@ -2,7 +2,7 @@ import React from 'react'
 import './NavigationItems.css'
 import {NavLink} from 'react-router-dom'
 
-const navigation = ()=> {
+const navigation = ({isAuthenticated})=> {
     return (
         <div>
             <ul className="NavigationItems">
@@ -12,6 +12,15 @@ const navigation = ()=> {
                 <li className="NavigationItem">
                    <NavLink to ="/orders" activeClassName="active">Orders</NavLink>
                 </li>
+                {!isAuthenticated ?
+                 <li className="NavigationItem">
+                   <NavLink to ="/auth" activeClassName="active">Sign-Up</NavLink>
+                </li> : 
+                <li className="NavigationItem">
+                <NavLink to ="/logout" activeClassName="active">Logout</NavLink>
+             </li>
+                }
+                
             </ul>
             
         </div>

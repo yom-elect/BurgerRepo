@@ -12,7 +12,7 @@ const checkOutSummary=({ingredients,purchaseEnd,purchaseGood})=> {
                 <Burger ingredients={ingredients}/>
             </div>
             <Button btnType="Danger" clicked = {purchaseEnd}>CANCEL</Button>
-            <Button btnType="Success" clicked ={purchaseGood}>COUNTINUE</Button>
+            <Button btnType="Success" clicked ={purchaseGood}>CONTINUE</Button>
         </div>
     )
 }
