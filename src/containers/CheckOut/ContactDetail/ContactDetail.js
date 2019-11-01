@@ -26,7 +26,7 @@ import { purchaseBurger } from '../../../store/actions/orderAction';
 
     orderHandler = (event)=> {
         event.preventDefault()
-        let {ings, totalPrice, onOrderBuger, token} = this.props
+        let {ings, totalPrice, onOrderBuger, token,userId} = this.props
         let {orderForm} = this.state
         //console.log(ingredients)
        
@@ -38,6 +38,7 @@ import { purchaseBurger } from '../../../store/actions/orderAction';
             ingredients:ings,
             price : totalPrice,
             orderData : formData,
+            userId,
         }
         onOrderBuger(order,token)
          //console.log(order)
@@ -95,6 +96,7 @@ const mapStateToProps = (state)=>{
         totalPrice:state.burgerBuilder.totalPrice,
         loading: state.orders.loading ,
         token: state.auth.token,
+        userId: state.auth.userId
     }
 }
 
