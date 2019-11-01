@@ -9,12 +9,14 @@ const navigation = ({isAuthenticated})=> {
                 <li className="NavigationItem">
                     <NavLink to ="/"  exact activeClassName="active" >Burger Builder</NavLink>
                 </li>
+                {isAuthenticated  && (
                 <li className="NavigationItem">
                    <NavLink to ="/orders" activeClassName="active">Orders</NavLink>
                 </li>
+                )}
                 {!isAuthenticated ?
                  <li className="NavigationItem">
-                   <NavLink to ="/auth" activeClassName="active">Sign-Up</NavLink>
+                   <NavLink to ="/auth" activeClassName="active">Login</NavLink>
                 </li> : 
                 <li className="NavigationItem">
                 <NavLink to ="/logout" activeClassName="active">Logout</NavLink>

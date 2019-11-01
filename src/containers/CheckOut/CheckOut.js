@@ -9,10 +9,7 @@ import {connect} from 'react-redux'
 
  class CheckOut extends Component {
     
-    // componentWillMount (){
-    //     this.props.onInitPurchase()
-    // }
-
+    
     checkoutCanceledHandler = ()=>{
         this.props.history.goBack();
     }
@@ -28,7 +25,6 @@ import {connect} from 'react-redux'
         if (ings){
             purchasedRedirect = purchased ? 
             <Redirect to ="/"/> : null; 
-
             //console.log(purchasedRedirect)
         }
         // eslint-disable-next-line no-lone-blocks   

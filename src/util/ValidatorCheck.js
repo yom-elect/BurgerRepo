@@ -1,19 +1,5 @@
 export const ValidatorChecker = (type)=>{
-    // componentDidMount() {
-    //     // custom rule will have name 'isPasswordMatch'
-    //     ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
-    //         if (value !== this.state.user.password) {
-    //             return false;
-    //         }
-    //         return true;
-    //     });
-    // }
-    
-    // componentWillUnmount() {
-    //     // remove rule when it is not needed
-    //     ValidatorForm.removeValidationRule('isPasswordMatch');
-    // }
-
+   
     let Validation = null
     switch (type){
         case ('name'):

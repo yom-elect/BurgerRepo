@@ -1,13 +1,15 @@
+/* eslint-disable no-lone-blocks */
 import React, { Component } from 'react'
 import {InputTag,PasswordTag} from '../../util/InputConfig.js'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom';
 import {ValidatorChecker} from '../../util/ValidatorCheck';
 import { ValidatorForm} from 'react-material-ui-form-validator';
 import Button from '../../components/UI/Buttons/Button';
 import Input from '../../components/UI/Input/Input'
 import './Auth.css'
 import Spinner from '../../components/UI/Spinner/Spinner'
-import {auth} from '../../store/actions/authAction'
+import {auth,setAuthRedirectPath} from '../../store/actions/authAction'
 
 class Auth extends Component {
     state = {
@@ -19,7 +21,17 @@ class Auth extends Component {
         isSignup : true,
     }
     
-    componentWillMount() {
+    componentDidMount(){
+        const {authRedirectPath, buildingBurger, onSetAuthRedirectPath} = this.props
+       // console.log(authRedirectPath, buildingBurger)
+        if (!buildingBurger && authRedirectPath !== '/')
+        {
+            //console.log("Here")
+            onSetAuthRedirectPath()
+        };
+    }
+
+    UNSAFE_componentWillMount() {
         // custom rule will have name 'isPasswordMatch'
         ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
             if (value !== this.state.controls.password.value) {
@@ -59,7 +71,6 @@ class Auth extends Component {
         let signInForm = {...controls                  
         }
 
-        
         if (signInForm["repeatPassWord"]){
            delete signInForm["repeatPassWord"] 
         }else {
@@ -75,7 +86,7 @@ class Auth extends Component {
     
     render() {
         let {controls, isSignup} =this.state
-        let  {loading,error} = this.props
+        let  {loading,error,isAuthenticated, authRedirectPath} = this.props
         const formElementsArray = [];
         for (let key in controls ){
             formElementsArray.push({
@@ -102,9 +113,13 @@ class Auth extends Component {
         {loading && (form = <Spinner/>)};
         let errorMessage = null;
         {error && (errorMessage = <p>{error.message}</p>)}
+        let authRedirect = null;
+        {isAuthenticated && (authRedirect = <Redirect to={authRedirectPath}/>)}
+        //console.log(authRedirectPath)
 
         return (
             <div className="Auth">
+                {authRedirect}
                 {errorMessage}
                 {form}
                 <Button clicked = {this.switchHandler} btnType="Danger">
@@ -119,12 +134,16 @@ const mapStateToProps = (state)=>{
     return {
         loading:state.auth.loading,
         error: state.auth.error,
+        isAuthenticated : state.auth.token !== null,
+        buildingBurger: state.burgerBuilder.building,
+        authRedirectPath: state.auth.authRedirectPath,
     }
 }
 
 const mapDispatchToProps = dispatch =>{
     return {
-        onAuth: (email,password,isSignup)=>dispatch(auth(email,password,isSignup))
+        onAuth: (email,password,isSignup)=>dispatch(auth(email,password,isSignup)),
+        onSetAuthRedirectPath:()=>dispatch(setAuthRedirectPath('/'))
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Auth);
