@@ -11,7 +11,7 @@ import axios from '../../axios-order'
 import {purchaseInit} from '../../store/actions/orderAction'
 import {setAuthRedirectPath} from '../../store/actions/authAction'
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
     state = {
          purchasing: false,
          
