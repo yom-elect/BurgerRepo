@@ -30,7 +30,6 @@ class  Orders extends Component {
         else{
             order = <h4>No Order Yet</h4>
         }
-        //console.log(order)
         return (
             <div>
                 {order}

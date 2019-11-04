@@ -28,8 +28,6 @@ import { purchaseBurger } from '../../../store/actions/orderAction';
         event.preventDefault()
         let {ings, totalPrice, onOrderBuger, token,userId} = this.props
         let {orderForm} = this.state
-        //console.log(ingredients)
-       
          const formData = {}
          for (let formIden in orderForm ){
             formData[formIden] = orderForm[formIden].value
@@ -41,7 +39,6 @@ import { purchaseBurger } from '../../../store/actions/orderAction';
             userId,
         }
         onOrderBuger(order,token)
-         //console.log(order)
     }
 
     inputChangedHandler = (event,inputIdentifier)=>{

@@ -1,6 +1,6 @@
-import React from 'react'
-import './NavigationItems.css'
-import {NavLink} from 'react-router-dom'
+import React from 'react';
+import './NavigationItems.css';
+import {NavLink} from 'react-router-dom';
 
 const navigation = ({isAuthenticated})=> {
     return (

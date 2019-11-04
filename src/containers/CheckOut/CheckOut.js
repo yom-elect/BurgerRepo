@@ -25,7 +25,6 @@ import {connect} from 'react-redux'
         if (ings){
             purchasedRedirect = purchased ? 
             <Redirect to ="/"/> : null; 
-            //console.log(purchasedRedirect)
         }
         // eslint-disable-next-line no-lone-blocks   
         {ings && (

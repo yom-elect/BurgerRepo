@@ -13,7 +13,7 @@ const sideDrawer = ({open,closed, isAuth})=> {
     return (
         <div>
             <Backdrop show= {open} clicked={closed}/>
-            <div className={attachedClasses}>
+            <div className={attachedClasses} clicked={closed}>
             <Logo height = "11%" margin="32px"/>
             <nav>
                 <Navigation isAuthenticated={isAuth}/>

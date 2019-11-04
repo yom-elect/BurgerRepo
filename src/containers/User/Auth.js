@@ -4,6 +4,7 @@ import {InputTag,PasswordTag} from '../../util/InputConfig.js'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom';
 import {ValidatorChecker} from '../../util/ValidatorCheck';
+import {updateObject} from '../../util/updateObject'
 import { ValidatorForm} from 'react-material-ui-form-validator';
 import Button from '../../components/UI/Buttons/Button';
 import Input from '../../components/UI/Input/Input'
@@ -23,10 +24,8 @@ class Auth extends Component {
     
     componentDidMount(){
         const {authRedirectPath, buildingBurger, onSetAuthRedirectPath} = this.props
-       // console.log(authRedirectPath, buildingBurger)
         if (!buildingBurger && authRedirectPath !== '/')
         {
-            //console.log("Here")
             onSetAuthRedirectPath()
         };
     }
@@ -49,20 +48,17 @@ class Auth extends Component {
         let  {onAuth} = this.props
         const {controls, isSignup } = this.state
         event.preventDefault()
-        onAuth(controls.email.value, controls.password.value, isSignup)
-        //console.log('Almost working')
-      
+        onAuth(controls.email.value, controls.password.value, isSignup)  
     }
     
     inputChangedHandler = (event,inputIdentifier)=>{
         const {controls} = this.state
-        const updatedControls = {
-             ...controls,
-                [inputIdentifier]:{
-                    ...controls[inputIdentifier],
-                    value:event.target.value
-                }
-        };
+        const updatedControls =updateObject(controls,{
+            [inputIdentifier]:updateObject(controls[inputIdentifier],{
+                 value:event.target.value                              
+            })                                
+        });
+        
         this.setState({controls:updatedControls})
     }
     
@@ -115,8 +111,6 @@ class Auth extends Component {
         {error && (errorMessage = <p>{error.message}</p>)}
         let authRedirect = null;
         {isAuthenticated && (authRedirect = <Redirect to={authRedirectPath}/>)}
-        //console.log(authRedirectPath)
-
         return (
             <div className="Auth">
                 {authRedirect}
