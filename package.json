@@ -47,7 +47,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-app-polyfill": "^1.0.4",
-    "react-dev-utils": "^9.1.0",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.10.2",
     "react-form-validator-core": "^0.6.4",
     "react-material-ui-form-validator": "^2.0.9",
